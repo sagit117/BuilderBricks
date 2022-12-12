@@ -3,6 +3,7 @@ package ru.axel.bricks.core;
 import com.typesafe.config.Config;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 public final class Scenario implements IScenario {
@@ -18,6 +19,8 @@ public final class Scenario implements IScenario {
         version = config.getString("scenario.version");
         priority = config.getInt("scenario.priority");
 
+        initCubs(config);
+
         logger.config("Прочитан сценарий: " + name);
     }
 
@@ -29,5 +32,21 @@ public final class Scenario implements IScenario {
     @Override
     public int getPriority() {
         return priority;
+    }
+
+    /**
+     * Метод запускает выполнения сценария.
+     */
+    @Override
+    public void launch() {
+
+    }
+
+    private void initCubs(@NotNull Config config) {
+        final List<? extends Config> cubConfigs = config.getConfigList("scenario.cubs");
+
+        cubConfigs.forEach(cubConfig ->{
+            System.out.println(cubConfig.getString("name"));
+        });
     }
 }

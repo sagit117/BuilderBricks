@@ -18,7 +18,7 @@ public class Main {
         final Set<IScenario> scenarios = Core.getScenarioList();
 
         scenarios.forEach(scenario -> {
-            logger.config(String.valueOf(scenario.getPriority()));
+            scenario.launch();
         });
     }
 }

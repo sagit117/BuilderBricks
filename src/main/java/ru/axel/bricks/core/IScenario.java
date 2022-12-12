@@ -4,4 +4,6 @@ public interface IScenario {
     String getName();
 
     int getPriority();
+
+    void launch();
 }
